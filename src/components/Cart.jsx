@@ -3,6 +3,7 @@ import { Link, useLoaderData } from 'react-router-dom';
 import CartItem from './Cards/CartItem'
 import { deleteShoppingCart, removeFromDb } from '../utils/fakedb';
 import { CartContext } from '../App';
+import { toast } from 'react-hot-toast';
 
 
 
@@ -21,11 +22,19 @@ const Cart = () => {
         const remaining = cart.filter(product => product.id !== id)
         setCart(remaining)
         removeFromDb(id)
+        toast.error('Product Remove! 🔥')
     }
 
     //Delete shopping cart 
     const deleteCartHandler =()=>{
         deleteShoppingCart()
+        if(cart.length){
+            setCart([])
+            deleteShoppingCart()
+            return toast.success('Removed👍')
+        }
+        
+
     }
 
     //Place Order
@@ -33,9 +42,12 @@ const Cart = () => {
         if(cart.length){
             setCart([])
             deleteShoppingCart()
-            return alert('Order Done')
+            return toast.success('Order Done 👍')
         }
+        return toast.error('Cart Empty 🔥')
     }
+
+    // const 
 
     return (
         <div className='flex min-h-screen items-start justify-center bg-gray-100 text-gray-900'>
