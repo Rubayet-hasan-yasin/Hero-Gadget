@@ -1,23 +1,27 @@
 
 
 // const addToDb = id => {
+
+    
 //     let shoppingCart = {}
 //     const storedCart = localStorage.getItem('shopping-cart');
-    
+//     console.log(storedCart)
 //     if(storedCart){
 //         shoppingCart = JSON.parse(storedCart)
 //     }
     
 //     // add quantity
 // let quantity = shoppingCart[id]
+// console.log(quantity, shoppingCart);
 // if(quantity){
 //     const newQuantity = quantity + 1;
-//     quantity = newQuantity;
+//     shoppingCart[id] = newQuantity;
 // }
 // else{
-//     quantity = 1;
+//     shoppingCart[id] = 1
+//     // quantity = 1;
 // }
-// console.log(quantity);
+
 
 // localStorage.setItem('shopping-cart', JSON.stringify(shoppingCart))
 
@@ -67,7 +71,24 @@ const addToDb = id => {
   }
 
 
+  // Remove a specific element from local storage
+  const removeFromDb = id =>{
+    const storedCart = localStorage.getItem('shopping-cart')
+    if(storedCart){
+        const shoppingCart = JSON.parse(storedCart)
+        if(id in shoppingCart){
+            delete shoppingCart[id];
+            localStorage.setItem('shopping-cart', JSON.stringify(shoppingCart));
+        }
+    }
+  }
+
+  // Clear all data from localstorage 
+  const deleteShoppingCart = () => localStorage.removeItem('shopping-cart');
+
 export { 
     addToDb,
-    getStoredCart
+    getStoredCart,
+    removeFromDb,
+    deleteShoppingCart
 }
