@@ -7,7 +7,7 @@ const Header = () => {
 
   const [cart, setCartt] = useContext(CartContext)
 
-  console.log(cart.length);
+  // console.log(cart.length);
   
   
 

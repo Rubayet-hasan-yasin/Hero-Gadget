@@ -9,7 +9,7 @@ const Shop = () => {
     // const productdata = useLoaderData()
     const products = useContext(ProductContext)
     const [cart, setCart] = useContext(CartContext)
-    console.log(products);
+    // console.log(products);
 
     const handleAddToCart = product =>{
         let newCart = []
@@ -19,7 +19,7 @@ const Shop = () => {
             newCart = [...cart,product]
         }
         else{
-            const rest = card.filter(existingProduct=> existingProduct.id !== product.id)
+            const rest = cart.filter(existingProduct=> existingProduct.id !== product.id)
             exist.quantity = exist.quantity + 1;
             newCart = [...rest, exist]
         }
